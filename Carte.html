@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>MIGRATION</title>
+      <!-- Css -->
+      <link href="css/bootstrap.css" rel="stylesheet">
+      <link href="css/lightbox.css" rel="stylesheet" type="text/css" media="all" />
+      <link href="css/style.css" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500&display=swap"
+           rel="stylesheet">
+      <link rel="stylesheet" href="style.css">
+      <link href="default.css" rel="stylesheet" type="text/css" media="all" />
+      <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" type="text/css">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+      <link rel="stylesheet" type="text/css" href="src/L.switchBasemap.css">
+      <link rel="stylesheet" type="text/css" href="css/nav.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+   </head>
+
+   <body>
+      <nav class="navbar navbar-default color-fill navbar-fixed-top">
+         <div class="col-md-12">
+            <div class="nav">
+               <button class="btn-nav">
+               <span class="icon-bar top"></span>
+               <span class="icon-bar middle"></span>
+               <span class="icon-bar bottom"></span>
+               </button>
+            </div>
+            <a class="navbar-brand" href="index.html">
+            <img style="width:100px;position: relative;bottom: 35px;" class="logo" src="img/logo.png" alt="logo">
+            </a>
+            <div class="nav-content hideNav hidden">
+               <ul class="nav-list vcenter">
+                   <li class="nav-item"><a class="item-anchor" href="index.html">Home</a></li>
+                  <li class="nav-item"><a class="item-anchor" href="Generalite.html">Generalite</a></li>
+                  <li class="nav-item"><a class="item-anchor" href="Carte.html">Carte</a></li>
+                  <li class="nav-item"><a class="item-anchor" href="contact.html">Contact</a></li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <section id="portfolio">
+         
+      </section>
+      <!-- script -->
+      <script src="js/jquery.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/lightbox-plus-jquery.js"></script>
+      <script src="js/jquery.shuffle.min.js"></script>
+      <script src="js/modernizr.js"></script>
+      <script src="js/script.js"></script>
+      <script src="leaflet.js"></script>
+      <link rel="stylesheet" href="leaflet.css" />
+      <script src="SelectLayers.js"></script> 
+      <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+      <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+      <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+      <script type="text/javascript" src="src/L.switchBasemap.js"></script>
+      <div id='map' style="position: absolute; bottom: 60px;width: 100%;">
+         
+      </div>
+      <div style="
+    position: relative;
+    bottom: -250px;
+    left: 400px;
+">
+               
+                              <a href="Carte.html"><button  style="width: 100px;height: 50px;" class="btn btn-primary btn-lg">Asia</button></a>
+                              <a href=""><button style="width: 100px;height: 50px;" class="btn btn-secondary btn-lg">Afrique</button></a>
+                              <a href="carte3.html"><button style="width: 100px;height: 50px;" class="btn btn-success btn-lg">Europe</button></a>
+                              <a href="carte2.html"><button style="width: 100px;height: 50px;" class="btn btn-danger btn-lg">Australie</button></a>
+                              <a href="carte1.html"><button style="width: 100px;height: 50px;" class="btn btn-warning btn-lg">Etats Unis</button></a>
+                              
+                    
+                     </div>
+      <div>
+  <canvas id="myChart" style="margin-top: 500px;"></canvas>
+</div>
+  
+
+<script type="text/javascript" src="mig.js"></script>
+<script type="text/javascript" src="migration.js"></script>
+
+<script type="text/javascript">
+
+
+   var map = L.map('map').setView([0, 0], 2);
+
+                      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+   L.Control.geocoder({ position: 'topleft' }).addTo(map);
+new L.basemapsSwitcher([
+  {
+    layer: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map), //DEFAULT MAP
+    icon: 'assets/img2.PNG',
+    name: 'Par Défaut'
+  },
+  {
+   layer : L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+   attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+}),
+
+icon: 'assets/img1.PNG',
+    name: 'Satellite'
+  }
+], { position: 'bottomleft' }).addTo(map);
+
+
+
+   // get color depending on population density value
+   function getColor(d) {
+      return d > 713987 ? '#330d00' :
+                                    d > 3405 ? '#661a00' :
+                                        d > 466 ? '#b32d00' :
+                                            d > 125 ? '#ff531a' :
+                                                d >= 4 ? '#ff8c66' :
+                                                ' #ffc6b3';
+   }
+
+   function Monstyle(feature) {
+      return {
+         weight: 2,
+         opacity: 1,
+         color: 'white',
+         dashArray: '3',
+         fillOpacity: 0.7,
+         fillColor: getColor(feature.properties.A)
+      };
+   }
+
+   function highlightFeature(e) {
+       var layer = e.target;
+
+       layer.setStyle({
+           weight: 5,
+           color: '#666',
+           dashArray: '',
+           fillOpacity: 0.7
+       });
+
+       if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+           layer.bringToFront();
+       }
+           info.update(layer.feature.properties);
+
+   }
+
+   function resetHighlight(e) {
+
+      geojson1990.resetStyle(e.target);
+          info.update();
+       };
+   function resetHighlight(e) {
+      geojson1995.resetStyle(e.target);
+          info.update();
+       };
+   function resetHighlight(e) {
+      geojson2000.resetStyle(e.target);
+          info.update();
+       };
+   function resetHighlight(e) {
+      geojson2005.resetStyle(e.target);
+          info.update();
+       }
+   function resetHighlight(e) {
+      geojson2010.resetStyle(e.target);
+          info.update();
+       }
+function resetHighlight(e) {
+      geojson2015.resetStyle(e.target);
+          info.update();
+       }
+function resetHighlight(e) {
+      geojson2020.resetStyle(e.target);
+          info.update();
+       }
+
+  
+   function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+   function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    this._div.innerHTML = '<h4>Nombre des émigrants marocains</h4>' +  (props ?
+        '<h5>Nombre :<b>' + props.A +  ' </sup>'
+        : '</h5> <h4> veillez mettre le curseur sur un pays </h4>');
+};
+
+info.addTo(map);
+
+   var geojson1990 = L.geoJson(A1990, {
+      style: Monstyle,
+       onEachFeature: onEachFeature,
+}).addTo(map);
+   var geojson1995 = L.geoJson(A1995, {
+      style: Monstyle,
+       onEachFeature: onEachFeature,
+});
+   var geojson2000 = L.geoJson(A2000, {
+      style: Monstyle,
+       onEachFeature: onEachFeature,
+});
+   var geojson2005 = L.geoJson(A2005, {
+      style: Monstyle,
+       onEachFeature: onEachFeature,
+});
+   var geojson2010 = L.geoJson(A2010, {
+      style: Monstyle,
+       onEachFeature: onEachFeature,
+});
+   var geojson2015 = L.geoJson(A2015, {
+      style: Monstyle,
+       onEachFeature: onEachFeature,
+});
+   var geojson2020 = L.geoJson(A2020, {
+      style: Monstyle,
+       onEachFeature: onEachFeature,
+})
+
+     
+
+ var overlayMaps = {
+      'Année 1990': geojson1990,
+      'Année 1995': geojson1995,
+      'Année 2000': geojson2000,
+      'Année 2005': geojson2005,
+      'Année 2010': geojson2010,
+      'Année 2015': geojson2015,
+      'Année 2020': geojson2020,
+     };
+
+var control = L.control.layers(overlayMaps)
+
+control.addTo(map);
+
+      var legend = L.control({position: 'bottomright'});
+    
+   legend.onAdd = function (map) {
+
+      var div = L.DomUtil.create('div', 'info legend'),
+         grades = [4,125,466,3405,713987],
+         labels = [];
+
+         div.innerHTML += '<h6>En nombre des émigrants</h6>';
+      for (var i = 0; i < grades.length; i++) {
+         div.innerHTML += 
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+      }
+
+      return div;
+   };
+
+   legend.addTo(map);
+
+
+
+</script>
+<script type="text/javascript" src="js/navs.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="text/javascript">
+
+
+const labels = ["Bahrain","Iraq","Jordan","Kuwait","Lebanon","Qatar","United Arab Emirates"];
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: 'A1990',
+      data: [257,451,398,594,182,100,1948],
+      borderColor: ["#df1040"],
+      backgroundColor: ["#11237e"],
+    },
+    {
+      label: 'A1995',
+      data: [282,532,563,1277,256,1412,2496],
+      borderColor: ["##c7b915"],
+      backgroundColor: ["##c7b910"],
+    },
+    {
+      label: 'A2000',
+      data: [257,451,398,594,182,1300,1948],
+      borderColor: ["##a7b915"],
+      backgroundColor: ["#a7b910"],
+    },
+    {
+      label: 'A2005',
+      data: [439,587,545,1574,254,976,3594],
+      borderColor: ["#df1040"],
+      backgroundColor: ["#11237e"],
+    },
+    {
+      label: 'A2010',
+      data: [669,600,1125,2087,180,1431,7508],
+      borderColor: ["#df1040"],
+      backgroundColor: ["#11237e"],
+    },
+    {
+      label: 'A2015',
+      data: [725,586,465,2795,153,1437,8204],
+      borderColor: ["#df1040"],
+      backgroundColor: ["#11237e"],
+    },
+    {
+      label: 'A2020',
+      data: [939,591,601,3032,132,1462,8942],
+      borderColor: ["#df1040"],
+      backgroundColor: ["#11237e"],
+    }
+    
+
+  ]
+};
+
+const config = {
+  type: 'line',
+  data: data,
+  options: {},
+};
+
+
+const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+   </body>
+</html>
